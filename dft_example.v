@@ -13,18 +13,20 @@ fn main() {
 	
 	z_re := z.map(it.re)
 	z_im := z.map(it.im)
+	pz   := signal.dft_power(z)
 
 	mut plotter := vplot.new()
 	plotter.enable_multiplot(vplot.Multiplotter{
-		rows: 3
+		rows: 4
 		cols: 1
 		title: 'DFT'
 	})
 	plotter.style(vplot.style_linespoints)
 
-	plotter.plot(x, 'input x')	or {}
-	plotter.plot(z_re, 're{X}') or {}
-	plotter.plot(z_im, 'im{X}') or {}
+	plotter.plot(x,    'input x')	or {}
+	plotter.plot(z_re, 're{X}')     or {}
+	plotter.plot(z_im, 'im{X}')     or {}
+	plotter.plot(pz,   'Power(X)')  or {}
 
 	_ := os.input('Press [ENTER] to continue')
 	plotter.disable_multiplot()
