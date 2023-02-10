@@ -9,17 +9,17 @@ import os
 fn main() {
 	x := [f64(1),1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-	y := signal.echo<f64, f64>(x, [
+	y := signal.echo[f64, f64](x, [
 		signal.EchoParameters{delay: 2, attenuation: 0.8},
 		signal.EchoParameters{delay: 4, attenuation: 0.2}
 	])
 
-	mut plot := vplot.new_plot()
+	mut plot := vplot.new()
 	plot.style(vplot.style_linespoints)
 	defer {
 		plot.close()
 	}
-	plot.plot_y(y, 'echo') or {
+	plot.plot(y, 'echo') or {
 		println('error: ${err}')
 	}
 

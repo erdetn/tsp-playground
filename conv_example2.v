@@ -8,7 +8,7 @@ import tsp.signal
 import vplot
 
 fn main() {
-	mut plotter := vplot.new_plot()
+	mut plotter := vplot.new()
 
 	defer {
 		plotter.close()
@@ -19,10 +19,10 @@ fn main() {
 	h := [f64(1), -1] // filter kernel
 	
 	// Edge detection (bump enhancement) //
-	y := signal.conv<f64>(x, h)
+	y := signal.conv[f64](x, h)
 
-	plotter.plot_y(x, 'x') or { println('${err}') }
-	plotter.plot_y(y, 'y') or { println('${err}') }
+	plotter.plot(x, 'x') or { println('${err}') }
+	plotter.plot(y, 'y') or { println('${err}') }
 
 	_ := os.input('Press [ENTER] to continue...')
 }

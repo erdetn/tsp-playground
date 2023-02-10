@@ -8,7 +8,7 @@ import tsp.signal
 import vplot
 
 fn main() {
-	mut plotter := vplot.new_plot()
+	mut plotter := vplot.new()
 
 	defer {
 		plotter.close()
@@ -17,10 +17,10 @@ fn main() {
 
 	x := [f64(0), 1, 4, 8, 12, 16, 12, 8, 4, 1, 0]
 
-	rxx := signal.conv<f64>(x, x)
+	rxx := signal.conv[f64](x, x)
 
-	plotter.plot_y(x, 'x') or { println('${err}') }
-	plotter.plot_y(rxx, 'rxx') or { println('${err}') }
+	plotter.plot(x, 'x') or { println('${err}') }
+	plotter.plot(rxx, 'rxx') or { println('${err}') }
 	tsp.print(rxx, 'rxx')
 
 	_ := os.input('Press [ENTER] to continue...')

@@ -9,9 +9,9 @@ fn sin2a(x int) f64 {
 }
 
 fn main() {
-	t := signal.vector<int>(1,1,200)
+	t := signal.vector[int](1,1,200)
 
-	y := signal.new<f64>(t, sin2a)
+	y := signal.new[f64](t, sin2a)
 
 	dump(t)
 	dump(y)
